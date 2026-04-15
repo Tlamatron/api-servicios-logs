@@ -13,13 +13,56 @@ API institucional para gestión de logs y auditoría, desarrollada en ASP.NET We
 
 ---
 
+## ⚙️ Configuración
+
+Este proyecto requiere dos archivos de configuración en la carpeta `Config`:
+
+- **secrets.config** → Contiene credenciales y llaves sensibles. **No se versiona**.  
+- **Cors.config** → Contiene orígenes y aplicaciones permitidas. **No se versiona**.  
+
+Ejemplos disponibles en el repositorio:
+- `secrets.config.example`
+- `Cors.config.example`
+
+Al clonar el proyecto:
+1. Copiar los `.example` y renombrarlos a `.config`.
+2. Reemplazar los valores ficticios por los reales de tu entorno.
+
+---
+
 ## 📌 Endpoints principales
 
-### 1. Crear Token
-`POST /api/token/crearToken`
+### LogController (`api/log`)
+
+#### 1. Escribir log
+`POST /api/log/write/{nombreAplicacion}`
 
 **Body (JSON):**
 ```json
+"Mensaje de prueba desde Postman"
+
+2. Listar logs
+GET /api/log/list
+Response (JSON):
+["Log_swImagenInstitucional.log", "Log_swFinanzas.log"]
+
+3. Asignar responsable
+POST /api/log/setResponsable
+Body (JSON):
+{
+  "Responsable": "Juan Pérez",
+  "Aplicacion": "swImagenInstitucional"
+}
+
+4. Consultar responsables
+GET /api/log/responsables
+Response (JSON):
+["Juan Pérez", "María López"]
+
+WsLogsController (api/wsLogs)
+1. Crear Token
+POST /api/wsLogs/crearToken
+Body (JSON):
 {
   "User": "usuario1",
   "Password": "pwd123",
@@ -27,4 +70,34 @@ API institucional para gestión de logs y auditoría, desarrollada en ASP.NET We
   "nombAplicacion": "postman",
   "Motor": 0,
   "TiempoActivo": 60
+}
+
+2. Validar Token
+POST /api/wsLogs/validarToken
+Body (JSON):
+{
+  "Token": "abc123xyz"
+}
+
+3. Generar JWT
+POST /api/wsLogs/generateJwt
+Body (JSON):
+{
+  "User": "usuario1",
+  "Aplicacion": "swImagenInstitucional"
+}
+
+4. Validar JWT
+POST /api/wsLogs/validateJwt
+Body (JSON):
+{
+  "Jwt": "eyJhbGciOi..."
+}
+
+5. Extender JWT
+POST /api/wsLogs/extendJwt
+Body (JSON):
+{
+  "Jwt": "eyJhbGciOi...",
+  "MinutosExtra": 30
 }
