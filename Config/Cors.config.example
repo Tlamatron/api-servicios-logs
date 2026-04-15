@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <!-- Orígenes permitidos -->
+    <add key="CorsOriginsProduccion_ejemplo" value="https://miaplicacion01.gob.mx,https://aplicacion_02.gob.mx,/" />
+    <add key="CorsOriginsPruebas_ejemplo" value="http://255.54.70.34:7077,https://localhost:xxxx" />
+
+    <!-- Aplicaciones de escritorio permitidas -->
+    <add key="AppsPermitidasProduccion_ejemplo" value="SI_App01,SI_App02" />
+    <add key="AppsPermitidasPruebas_ejemplo" value="SI_App01,Postman,SI_App02" />
+  </appSettings>
+</configuration>

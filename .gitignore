@@ -1,0 +1,26 @@
+# Archivos temporales de Visual Studio
+.vs/
+*.user
+*.suo
+*.vsidx
+*.vscode/
+
+# Binarios y compilados
+bin/
+obj/
+Debug/
+Release/
+
+# Paquetes NuGet
+packages/
+*.nupkg
+
+# Archivos de logs
+Log/
+*.log
+
+# Configuración sensible
+Config/secrets.config
+Config/Cors.config
+
+# Puedes subir versiones de ejemplo
